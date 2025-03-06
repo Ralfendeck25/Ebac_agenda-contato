@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Contatos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        .buttom {
+            background-color: greenyellow;
+            color: white;
+            font-size: 15px;
+            border-radius: none;
+            border: 1px solid greenyellow;
+            cursor: pointer;
+            padding: 2px 10px;
+        }
+        .buttom:hover {
+            background-color: green;
+            color: white;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Lista de Contatos</h2>
+    <form id="contact-form">
+        <input type="text" id="name" name required placeholder="Nome" />
+        <input type="text" id="phone" phone required placeholder="Telefone" />
+        <button id="submit" type="submit" class="buttom">Cadastrar</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Telephone</th>
+            </tr>
+        </thead>
+        <tbody id="contact-list">
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            
+            if (name && phone) {
+                const table = document.getElementById("contact-list");
+                const newRow = table.insertRow();
+                newRow.insertCell(0).textContent = name;
+                newRow.insertCell(1).textContent = phone;
+                
+                document.getElementById("contact-form").reset();
+            }
+        });
+    </script>
+</body>
+</html>
